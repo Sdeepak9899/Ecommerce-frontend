@@ -8,7 +8,7 @@ import { LuAlignJustify } from 'react-icons/lu';
 import { motion, AnimatePresence } from 'framer-motion';
 // import SiderbarMenu from '../sidebar/siderbarMenu';
 
-const Top = () => {
+const Top = ({ pageSelect, setPageSelect }) => {
   const [isShowMenu, setIsShowMenu] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showImage, setShowImage] = useState(1);
@@ -130,7 +130,10 @@ const Top = () => {
           {icons.map((icon, index) => (
             <div
               key={index}
-              onClick={() => setActiveIndex(index)(handleShowImage)}
+              onClick={() => {
+                setActiveIndex(index);
+                setPageSelect(index);
+              }}
               className={`border border-gray-200 text-gray-600 cursor-pointer p-2 rounded transition duration-700 hover:bg-cyan-400 hover:text-white
               ${activeIndex === index ? 'bg-cyan-400 text-white' : ''}
             `}

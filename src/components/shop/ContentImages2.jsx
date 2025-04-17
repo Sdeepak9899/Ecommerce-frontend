@@ -356,6 +356,7 @@ const COntentImage = () => {
 
   return (
     <div className="py-6">
+      
       <div className="py-6 w-full">
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {visibleItems.map((item, index) => (
@@ -391,7 +392,7 @@ const COntentImage = () => {
           ))}
         </ul>
       </div>
-
+      
       <div className="flex flex-col justify-center items-center text-center gap-4 mt-12">
         <div>
           Showing 1–{visibleItems.length} of {totalItems} item(s)
