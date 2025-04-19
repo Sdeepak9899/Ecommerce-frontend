@@ -1,14 +1,13 @@
 /** @format */
 'use client';
 
-import Image from 'next/image';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { IoSearch } from 'react-icons/io5';
 import { LuArrowRightLeft } from 'react-icons/lu';
 import { useState } from 'react';
 
-const COntentImage4 = () => {
+const ContentImage4 = () => {
   const Cartsdetails = [
     {
       imag1: '/shop/image1.jpg',
@@ -355,49 +354,77 @@ const COntentImage4 = () => {
   };
 
   return (
-    <div className="py-6">
-      <div className="py-6 w-full">
-        <ul className="grid grid-cols-1   gap-4">
-          {visibleItems.map((item, index) => (
-            <li key={index} className="group">
-              <div className="rounded-3xl relative overflow-hidden">
-                <img
-                  src={item.imag1}
-                  alt={item.name}
-                  className="w-full object-cover h-full absolute top-0 group-hover:opacity-0 rounded-2xl"
-                />
-                <img
-                  src={item.imag2}
-                  alt={item.name}
-                  className="w-full h-full object-cover group-hover:opacity-100"
-                />
-                <div className="absolute bottom-4 w-full justify-center gap-8 px-4">
-                  <ul className="w-full flex gap-4 items-center justify-center">
-                    {icons.map((ite1, i) => (
-                      <li key={i} className="flex">
-                        <div className="p-2 bg-white rounded-full flex items-center opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 duration-500 delay-200 ease-in-out hover:bg-cyan-400 hover:text-white">
-                          {ite1.name}
-                        </div>
-                      </li>
-                    ))}
-                  </ul>
+    <div className="py-8">
+      <ul className="grid grid-cols-1 gap-8 p-2 sm:p-4 ">
+        {visibleItems.map((item, index) => (
+          <li
+            key={index}
+            className="flex flex-col md:flex-row w-full gap-8 justify-between"
+          >
+            {/* Image Section */}
+            <div className="relative group  max-w-4xl aspect-[4/3] overflow-hidden rounded-3xl">
+              <img
+                src={item.imag1}
+                alt={item.name}
+                className="absolute top-0   right-0 w-full  object-cover transition-all duration-700 ease-in-out group-hover:-translate-x-full"
+              />
+              <img
+                src={item.imag2}
+                alt={item.name}
+                className="absolute top-0 right-[-100%] w-full  object-cover transition-all duration-700 ease-in-out group-hover:right-0"
+              />
+
+              {/* Icons */}
+              <div className="absolute bottom-4 w-full flex justify-center gap-4 px-4">
+                <ul className="flex gap-4 items-center">
+                  {icons.map((ite1, i) => (
+                    <li key={i}>
+                      <div className="p-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 duration-500 delay-200 ease-in-out hover:bg-cyan-400 hover:text-white">
+                        {ite1.name}
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* Info Section */}
+            <div className="flex flex-col gap-4 mt-4 w-full px-2 sm:px-4">
+              <div className="flex flex-col gap-4">
+                <span className="text-3xl font-semibold">{item.name}</span>
+                <span className="text-lg font-semibold">{item.price}</span>
+                <div className="flex flex-wrap items-center gap-3">
+                  <button className="w-44 bg-black sm:text-lg text-white p-2 rounded-lg  hover:bg-cyan-400 cursor-pointer shrink-0">
+                    Select option
+                  </button>
+                  <FaRegHeart
+                    size={40}
+                    className="p-2 border border-gray-300 text-gray-600 hover:bg-cyan-400 hover:text-white cursor-pointer rounded-md"
+                  />
+                  <LuArrowRightLeft
+                    size={40}
+                    className="p-2 border border-gray-300 text-gray-600 hover:bg-cyan-400 hover:text-white cursor-pointer rounded-md"
+                  />
                 </div>
               </div>
-              <div className="flex flex-col items-center gap-4 mt-4">
-                <span className="text-lg font-semibold">{item.name}</span>
-                <span className="font-semibold">{item.price}</span>
+              <div className=" w-full">
+                <p className=" ">
+                  Duis aute irure dolor in reprehenderit in voluptate velit esse
+                  cillum dolore eu fugiat nulla pariatur.
+                </p>
               </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+            </div>
+          </li>
+        ))}
+      </ul>
 
+      {/* Pagination Section */}
       <div className="flex flex-col justify-center items-center text-center gap-4 mt-12">
         <div>
           Showing 1–{visibleItems.length} of {totalItems} item(s)
         </div>
-        {/* progress bar */}
-        <div className="w-full sm:w-96  h-1.5 bg-gray-200 rounded overflow-hidden">
+        {/* Progress bar */}
+        <div className="w-full sm:w-96 h-1.5 bg-gray-200 rounded overflow-hidden">
           <div
             className="h-full bg-black transition-all duration-300"
             style={{
@@ -419,4 +446,4 @@ const COntentImage4 = () => {
   );
 };
 
-export default COntentImage4;
+export default ContentImage4;

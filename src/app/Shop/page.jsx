@@ -8,7 +8,7 @@ export default function Pages() {
   return (
     <div>
       <ShopHero />
-      <div className="flex px-4">
+      <div className="flex px-2 sm:px-4">
         <ContentIndex />
       </div>
     </div>

@@ -10,17 +10,17 @@ import COntentImage3 from './ContentImage3';
 import COntentImage4 from './ContentImage4';
 
 export default function ContentIndex() {
-  const [pageSelect, setPageSelect] = useState(1);
+  const [pageSelect, setPageSelect] = useState(3);
   return (
-    <div className="flex">
+    <div className="flex w-full">
       <div>
         <SidebarNav />
       </div>
-      <div className="flex flex-col  flex-wrap ">
+      <div className="flex flex-col  flex-wrap w-full">
         <Top pageSelect={pageSelect} setPageSelect={setPageSelect} />
-        {pageSelect === 0 && <COntentImage1 />}
+        {/* {pageSelect === 0 && <COntentImage1 />}
         {pageSelect === 1 && <COntentImage2 />}
-        {pageSelect === 2 && <COntentImage3 />}
+        {pageSelect === 2 && <COntentImage3 />} */}
         {pageSelect === 3 && <COntentImage4 />}
         {/* <COntentImage /> */}
         {/* <COntentImage1 /> */}

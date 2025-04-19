@@ -69,7 +69,7 @@ const Top = ({ pageSelect, setPageSelect }) => {
   ];
 
   return (
-    <div className="flex justify-between mt-2 sm:mt-0 w-full py-8 px-4">
+    <div className="flex justify-between mt-2 sm:mt-0 w-full py-8 px-2 sm:px-4">
       <div className=" sm:h-14 outline-none w-64 text-sm">
         <div className="flex items-center justify-center m-1 sm:m-2 gap-1 sm:gap-5">
           <div
@@ -80,7 +80,7 @@ const Top = ({ pageSelect, setPageSelect }) => {
           </div>
 
           {/* Dropdown */}
-          <div ref={dropdownRef} className="relative  w-72">
+          <div ref={dropdownRef} className="relative w-64 sm:w-72 flex-wrap">
             <div
               className={`flex justify-between items-center border p-2 cursor-pointer rounded 
               duration-700 shadow
@@ -125,8 +125,8 @@ const Top = ({ pageSelect, setPageSelect }) => {
       </div>
 
       {/* Icons - only visible on large screens */}
-      <div className="hidden lg:block">
-        <div className="flex gap-3">
+      <div className="hidden lg:block ">
+        <div className="flex gap-3 ">
           {icons.map((icon, index) => (
             <div
               key={index}
