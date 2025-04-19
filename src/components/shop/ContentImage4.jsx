@@ -334,12 +334,13 @@ const ContentImage4 = () => {
       price: '$50.00-$120.00',
     },
   ];
-
-  const icons = [
-    { name: <FaArrowRightLong size={20} /> },
-    { name: <IoSearch size={20} /> },
-    { name: <FaRegHeart size={20} /> },
-    { name: <LuArrowRightLeft size={20} /> },
+  const colors = [
+    { name: 'Beiger', number: '(6)', cname: '#e6d4b4' },
+    { name: 'Black', number: '(9)', cname: '#000000' },
+    { name: 'Blue', number: '(4)', cname: '#5173a6' },
+    { name: 'Brick', number: '(2)', cname: '#6b302c' },
+    { name: 'Gray', number: '(3)', cname: '#8d9098' },
+    { name: 'Green', number: '(4)', cname: '#20b2aa' },
   ];
 
   const ITEMS_PER_PAGE = 12;
@@ -375,11 +376,14 @@ const ContentImage4 = () => {
               />
 
               {/* Icons */}
-              <div className="absolute w-full flex justify-center gap-4 px-4 transition-all duration-500 ease-in-out bottom-0 group-hover:bottom-4 bg-white/0 group-hover:bg-white">
+              <div className="absolute w-full flex justify-center gap-4 px-4 transition-all duration-500 ease-in-out bottom-0 group-hover:bottom-4 bg-white/0 group-hover:bg-white delay-200">
                 <ul className="flex gap-4 items-center">
-                  {icons.map((ite1, i) => (
+                  {colors.map((ite1, i) => (
                     <li key={i}>
-                      <div className="p-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 duration-500 delay-200 ease-in-out hover:bg-cyan-400 hover:text-white">
+                      <div
+                        className="p-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 duration-500 delay-200 ease-in-out hover:bg-cyan-400 hover:text-white"
+                        title={ite1.name}
+                      >
                         {ite1.name}
                       </div>
                     </li>
