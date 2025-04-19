@@ -375,7 +375,7 @@ const ContentImage4 = () => {
               />
 
               {/* Icons */}
-              <div className="absolute bottom-4 w-full flex justify-center gap-4 px-4">
+              <div className="absolute w-full flex justify-center gap-4 px-4 transition-all duration-500 ease-in-out bottom-0 group-hover:bottom-4 bg-white/0 group-hover:bg-white">
                 <ul className="flex gap-4 items-center">
                   {icons.map((ite1, i) => (
                     <li key={i}>
@@ -394,7 +394,7 @@ const ContentImage4 = () => {
                 <span className="text-3xl font-semibold">{item.name}</span>
                 <span className="text-lg font-semibold">{item.price}</span>
                 <div className="flex flex-wrap items-center gap-3">
-                  <button className="w-44 bg-black sm:text-lg text-white p-2 rounded-lg  hover:bg-cyan-400 cursor-pointer shrink-0">
+                  <button className="w-32 sm:w-44 bg-black sm:text-lg text-white p-2 rounded-lg  hover:bg-cyan-400 cursor-pointer shrink-0">
                     Select option
                   </button>
                   <FaRegHeart
