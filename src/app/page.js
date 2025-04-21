@@ -1,5 +1,6 @@
 /** @format */
 
+import SimpleSlider from '@/components/home/best_seller';
 import Cart from '@/components/home/cart';
 import Follow from '@/components/home/follow';
 import MultipleItems from '@/components/home/Shop';
@@ -11,6 +12,7 @@ export default function Home() {
       <Cart />
       <MultipleItems />
       <Video />
+      <SimpleSlider />
       <Follow />
     </div>
   );
