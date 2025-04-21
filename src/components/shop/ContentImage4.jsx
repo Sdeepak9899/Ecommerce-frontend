@@ -339,8 +339,8 @@ const ContentImage4 = () => {
     { name: 'Black', number: '(9)', cname: '#000000' },
     { name: 'Blue', number: '(4)', cname: '#5173a6' },
     { name: 'Brick', number: '(2)', cname: '#6b302c' },
-    { name: 'Gray', number: '(3)', cname: '#8d9098' },
-    { name: 'Green', number: '(4)', cname: '#20b2aa' },
+    // { name: 'Gray', number: '(3)', cname: '#8d9098' },
+    // { name: 'Green', number: '(4)', cname: '#20b2aa' },
   ];
 
   const ITEMS_PER_PAGE = 12;
@@ -360,10 +360,10 @@ const ContentImage4 = () => {
         {visibleItems.map((item, index) => (
           <li
             key={index}
-            className="flex flex-col md:flex-row w-full gap-8 justify-between"
+            className="flex flex-col md:flex-row w-full gap-8 justify-between h-96 group"
           >
             {/* Image Section */}
-            <div className="relative group  max-w-4xl aspect-[4/3] overflow-hidden rounded-3xl">
+            <div className="relative   max-w-4xl aspect-[4/3] overflow-hidden rounded-3xl">
               <img
                 src={item.imag1}
                 alt={item.name}
@@ -376,19 +376,33 @@ const ContentImage4 = () => {
               />
 
               {/* Icons */}
-              <div className="absolute w-full flex justify-center gap-4 px-4 transition-all duration-500 ease-in-out bottom-0 group-hover:bottom-4 bg-white/0 group-hover:bg-white delay-200">
-                <ul className="flex gap-4 items-center">
+              <div className="absolute w-full flex justify-center gap-4 px-8 bottom-0 z-20 opacity-0 translate-y-4 bg-white/0  group-hover:opacity-100 group-hover:translate-y-0 group-hover:bg-white transition-all duration-500 ease-in-out">
+                <div className="flex gap-4 items-center py-2">
                   {colors.map((ite1, i) => (
-                    <li key={i}>
+                    <div
+                      key={i}
+                      className="relative flex flex-col items-center text-center group/color"
+                    >
+                      {/* Color Circle */}
                       <div
-                        className="p-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transform translate-y-3 group-hover:translate-y-0 duration-500 delay-200 ease-in-out hover:bg-cyan-400 hover:text-white"
-                        title={ite1.name}
-                      >
+                        className="w-8 h-8 rounded-full hover:scale-90 duration-200 shadow-md cursor-pointer"
+                        style={{ backgroundColor: ite1.cname }}
+                      />
+                      {/* Tooltip */}
+                      <div className="absolute -top-8 opacity-0 group-hover/color:opacity-100 transition-opacity duration-300 text-sm bg-gray-800 text-white px-2 py-1 rounded shadow-lg whitespace-nowrap">
                         {ite1.name}
                       </div>
-                    </li>
+                    </div>
                   ))}
-                </ul>
+                </div>
+              </div>
+              <div className="opacity-0 group-hover:opacity-100 h-full">
+                <div className="absolute w-full h-full bg-black/20 flex flex-col items-center justify-center">
+                  <IoSearch
+                    size={45}
+                    className="bg-black text-white p-3 rounded-full hover:bg-cyan-400 hover:text-white"
+                  />
+                </div>
               </div>
             </div>
 
