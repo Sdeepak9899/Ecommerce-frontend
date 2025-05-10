@@ -1,19 +1,19 @@
 /** @format */
+
 'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { FaChevronUp } from 'react-icons/fa';
 import Image from 'next/image';
+import { FaChevronUp } from 'react-icons/fa';
 import { AnimatePresence, motion } from 'framer-motion';
 
+// Constants
+const MIN = 15;
+const MAX = 229;
+
 const Categories = [
-  {
-    name: 'Bag',
-    number: '(3)',
-    path: '/',
-    Childrens: [],
-  },
+  { name: 'Bag', number: '(3)', path: '/', Childrens: [] },
   {
     name: 'Furniture',
     number: '(9)',
@@ -23,12 +23,7 @@ const Categories = [
       { titl: 'Decor', no: '(6)', to: '/' },
     ],
   },
-  {
-    name: 'Glasses',
-    number: '(3)',
-    path: '/',
-    Childrens: [],
-  },
+  { name: 'Glasses', number: '(3)', path: '/', Childrens: [] },
   {
     name: 'Jewelry',
     number: '(8)',
@@ -56,18 +51,8 @@ const Categories = [
       { titl: 'Polo Shirt', no: '(0)', to: '/' },
     ],
   },
-  {
-    name: 'Shoes',
-    number: '(5)',
-    path: '/',
-    Childrens: [],
-  },
-  {
-    name: 'Top',
-    number: '(4)',
-    path: '/',
-    Childrens: [],
-  },
+  { name: 'Shoes', number: '(5)', path: '/', Childrens: [] },
+  { name: 'Top', number: '(4)', path: '/', Childrens: [] },
 ];
 
 const colors = [
@@ -118,15 +103,29 @@ const featureProducts = [
   },
 ];
 
-const SidebarNav = () => {
-  const [openDropdown, setOpenDropdown] = useState(null);
+export default function SidebarNav() {
+  const [openDropdown, setOpenDropdown] = useState(null); // Fixed here
+  const [minVal, setMinVal] = useState(MIN);
+  const [maxVal, setMaxVal] = useState(MAX);
 
   const toggleDropdown = (index) => {
     setOpenDropdown(openDropdown === index ? null : index);
   };
+  const getPercent = (value) => ((value - MIN) / (MAX - MIN)) * 100;
+
+  const handleMinChange = (e) => {
+    const val = Math.min(Number(e.target.value), maxVal - 1);
+    setMinVal(val);
+  };
+
+  const handleMaxChange = (e) => {
+    const val = Math.max(Number(e.target.value), minVal + 1);
+    setMaxVal(val);
+  };
 
   return (
     <div className="w-[350px] p-6 hidden lg:block">
+      {/* Categories */}
       <div>
         <h1 className="text-xl font-bold">Categories</h1>
         <ul className="mt-4 text-black">
@@ -150,7 +149,6 @@ const SidebarNav = () => {
                   />
                 )}
               </div>
-
               <AnimatePresence initial={false}>
                 {openDropdown === index && category.Childrens.length > 0 && (
                   <motion.ul
@@ -178,16 +176,72 @@ const SidebarNav = () => {
         </ul>
       </div>
 
+      {/* Price Filter */}
       <div className="mt-6">
         <h2 className="text-lg font-semibold">Price</h2>
-        <div className="mt-2">
-          <input type="range" name="range" className="w-full my-2" />
-          <p>
-            Range: <span className="text-cyan-500">$15.00 - $229.00</span>
-          </p>
+        <div className="relative h-10 mt-4 flex items-center px-2 mb-4">
+          <div className="absolute left-0 right-0 h-1 bg-gray-300 rounded overflow-hidden" />
+          <div
+            className="absolute h-1 bg-black rounded overflow-hidden"
+            style={{
+              left: `${getPercent(minVal)}%`,
+              width: `${getPercent(maxVal) - getPercent(minVal)}%`,
+            }}
+          />
+          <input
+            type="range"
+            min={MIN}
+            max={MAX}
+            value={minVal}
+            onChange={handleMinChange}
+            className="absolute w-full bg-transparent pointer-events-none z-[6]  "
+          />
+          <input
+            type="range"
+            min={MIN}
+            max={MAX}
+            value={maxVal}
+            onChange={handleMaxChange}
+            className="absolute w-full appearance-none bg-transparent pointer-events-none z-[5]"
+          />
         </div>
+        <p className="text-sm">
+          Range:{' '}
+          <span className="text-cyan-500">
+            ${minVal.toFixed(2)} - ${maxVal.toFixed(2)}
+          </span>
+        </p>
+
+        {/* Thumb styling */}
+        <style jsx>{`
+          input[type='range'] {
+            background: transparent;
+          }
+
+          input[type='range']::-webkit-slider-thumb {
+            pointer-events: auto;
+            height: 15px;
+            width: 10px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 2px; /* Slight rounding for cleaner corners, optional */
+            cursor: ew-resize;
+            transition: transform 0.15s ease;
+          }
+          input[type='range']::-moz-range-thumb {
+            pointer-events: auto;
+            height: 15px;
+            width: 10px;
+            background-color: white;
+            border: 2px solid black;
+            border-radius: 2px; /* Slight rounding for cleaner corners, optional */
+            cursor: ew-resize;
+            transition: transform 0.15s ease;
+          }
+        `}</style>
       </div>
 
+      {/* Colors */}
       <div className="mt-6">
         <h2 className="text-lg font-semibold mb-4">Colors</h2>
         <div className="flex flex-wrap gap-4">
@@ -197,7 +251,7 @@ const SidebarNav = () => {
               className="group relative flex flex-col items-center text-center"
             >
               <div
-                className="w-8 h-8 rounded-full  hover:scale-90 duration-200 shadow-md"
+                className="w-8 h-8 rounded-full hover:scale-90 duration-200 shadow-md"
                 style={{ backgroundColor: color.cname }}
               />
               <div className="absolute -top-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm bg-gray-800 text-white px-2 py-1 rounded shadow-lg">
@@ -208,6 +262,7 @@ const SidebarNav = () => {
         </div>
       </div>
 
+      {/* Sizes */}
       <div className="mt-6">
         <h2 className="text-lg font-semibold">Sizes</h2>
         <div className="flex flex-wrap mt-2 gap-2">
@@ -223,6 +278,7 @@ const SidebarNav = () => {
         </div>
       </div>
 
+      {/* Brands */}
       <div className="mt-6">
         <h2 className="text-lg font-semibold">Brands</h2>
         <div className="flex flex-wrap gap-2 mt-2">
@@ -238,10 +294,11 @@ const SidebarNav = () => {
         </div>
       </div>
 
+      {/* Featured Products */}
       <div className="mt-6">
         <h2 className="text-lg font-semibold">Featured Products</h2>
         {featureProducts.map((item, index) => (
-          <div key={index} className="mt-4 flex gap-4  rounded">
+          <div key={index} className="mt-4 flex gap-4 rounded">
             <Image
               src={item.Photos}
               alt={item.name}
@@ -260,6 +317,4 @@ const SidebarNav = () => {
       </div>
     </div>
   );
-};
-
-export default SidebarNav;
+}
