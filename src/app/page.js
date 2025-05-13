@@ -1,5 +1,6 @@
 /** @format */
 
+import Hero from '@/components/home/hero';
 import SimpleSlider from '@/components/home/best_seller';
 import Cart from '@/components/home/cart';
 import Follow from '@/components/home/follow';
@@ -10,6 +11,7 @@ import Video from '@/components/home/video';
 export default function Home() {
   return (
     <div className="overflow-hidden flex flex-col gap-10">
+      <Hero />
       <Cart />
       <MultipleItems />
       <Video />
