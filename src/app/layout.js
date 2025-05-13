@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
       >
         <Navigation />
         {children}
-        {/* <ModernPopup /> */}
+        <ModernPopup />
         <Footer />
       </body>
     </html>
